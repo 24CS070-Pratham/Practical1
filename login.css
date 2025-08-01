@@ -1,147 +1,165 @@
-/* General Reset */
+/* Reset & Base */
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(to right, #ece9e6, #ffffff);
+  background: linear-gradient(to right, #f0f4ff, #d9e4ff);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  transition: background 0.5s;
 }
 
-.login-container {
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(15px);
-  border-radius: 20px;
-  padding: 40px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  width: 350px;
-  animation: fadeIn 1s ease-in-out;
-}
-
-.logo {
-  width: 100%;
-  max-width: 320px;
-  margin-bottom: 20px;
-}
-
-.portal-title {
-  font-size: 28px;
-  color: navy;
-  margin-bottom: 10px;
-}
-
-.login-header {
-  font-size: 20px;
-  color: green;
-  margin-bottom: 20px;
-  text-decoration: underline;
-}
-
-form input[type="text"],
-form input[type="password"] {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  background-color: rgba(255, 255, 255, 0.7);
-  font-size: 16px;
-}
-
-.login-button {
-  padding: 12px 25px;
-  background-color: navy;
-  color: white;
-  font-size: 16px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  margin-top: 15px;
-  transition: background-color 0.3s ease;
-}
-
-.login-button:hover {
-  background-color: darkblue;
-}
-
-.footer-text {
-  margin-top: 25px;
-  font-size: 14px;
-  color: gray;
-}
-
-.marquee {
+/* Marquee */
+marquee {
   margin-top: 20px;
-  width: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-  animation: marquee 15s linear infinite;
-  font-size: 22px;
-  color: #C71585;
   font-weight: bold;
 }
 
-@keyframes marquee {
-  0% { transform: translateX(100%); }
-  100% { transform: translateX(-100%); }
+/* Logo */
+img {
+  margin-top: 15px;
+  margin-bottom: 10px;
 }
 
-#theme-dark {
-  background: linear-gradient(to right, #1e1e1e, #2c3e50);
+/* Main Heading */
+hr {
+  border: none;
+  height: 2px;
+  background-color: navy;
+  margin: 10px 0;
 }
 
-#theme-dark .login-container {
-  background: rgba(0, 0, 0, 0.3);
+/* Login Section */
+form {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  padding: 30px 40px;
+  width: 400px;
+  margin-top: 20px;
+  backdrop-filter: blur(5px);
+}
+
+table {
+  width: 100%;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  border-color: #5a87ff;
+  box-shadow: 0 0 5px rgba(90, 135, 255, 0.5);
+}
+
+input[type="submit"] {
+  padding: 10px 20px;
+  background-color: navy;
   color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-#theme-dark input,
-#theme-dark .login-button {
-  background-color: rgba(255, 255, 255, 0.1);
-  color: white;
+input[type="submit"]:hover {
+  background-color: #002060;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  color: gray;
+  margin-top: 30px;
+  font-size: 14px;
+}
+
+/* Responsive */
+@media screen and (max-width: 500px) {
+  form {
+    width: 90%;
+    padding: 20px;
+  }
+
+  input[type="submit"] {
+    width: 100%;
+  }
+}
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+/* Theme Toggle Button */
+#themeToggle {
+  position: fixed;
+  top: 15px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  z-index: 1000;
+  transition: transform 0.2s ease;
+}
+
+#themeToggle:hover {
+  transform: rotate(20deg);
+}
+
+/* Dark Theme Styles */
+body.dark-mode {
+  background: linear-gradient(to right, #1a1a2e, #16213e);
+  color: #f0f0f0;
+}
+
+body.dark-mode form {
+  background: rgba(40, 40, 60, 0.9);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode input[type="text"],
+body.dark-mode input[type="password"] {
+  background-color: #2b2b3d;
+  color: #f0f0f0;
   border: 1px solid #555;
 }
 
-#theme-dark .login-button:hover {
-  background-color: #333;
+body.dark-mode input[type="text"]:focus,
+body.dark-mode input[type="password"]:focus {
+  border-color: #8888ff;
+  box-shadow: 0 0 8px rgba(136, 136, 255, 0.4);
 }
 
-.theme-toggle {
-  position: absolute;
-  top: 20px;
-  right: 30px;
+body.dark-mode input[type="submit"] {
+  background-color: #4444aa;
 }
 
-.theme-toggle button {
-  font-size: 20px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: #333;
-  transition: color 0.3s;
+body.dark-mode input[type="submit"]:hover {
+  background-color: #333388;
 }
 
-#theme-dark .theme-toggle button {
-  color: white;
+body.dark-mode marquee {
+  color: #ffcc00;
 }
 
-#errorMessage {
-  color: red;
-  margin-top: 10px;
-  font-size: 14px;
-  display: none;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+body.dark-mode #themeToggle {
+  color: #ffcc00;
 }
