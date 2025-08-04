@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Portal - FAQ & Slider</title>
+  <style>
+    :root {
+      --bg-color: #f4f4f4;
+      --text-color: #222;
+      --card-bg: #fff;
+      --accent: #007bff;
+    }
+
+    body.dark {
+      --bg-color: #1e1e1e;
+      --text-color: #f0f0f0;
+      --card-bg: #2c2c2c;
+      --accent: #00bcd4;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      padding: 30px;
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
+
+    .faq-container {
+      max-width: 800px;
+      margin: auto;
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      transition: background 0.4s ease;
+    }
+
+    .faq-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .theme-toggle {
+      text-align: right;
+      margin-bottom: 15px;
+    }
+
+    .theme-toggle button {
+      padding: 8px 15px;
+      background: var(--accent);
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .theme-toggle button:hover {
+      opacity: 0.9;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #ccc;
+      padding: 10px 0;
+    }
+
+    .faq-question {
+      font-weight: bold;
+      cursor: pointer;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .faq-question::after {
+      content: '+';
+      float: right;
+      font-size: 18px;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-question.active::after {
+      content: '-';
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, opacity 0.3s ease;
+      opacity: 0;
+      color: var(--text-color);
+    }
+
+    .faq-answer.show {
+      max-height: 300px;
+      opacity: 1;
+    }
+
+    /* Image Slider Styles */
+    .slider-container {
+      margin-top: 40px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .slider {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .slide {
+      min-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .slider-controls {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .slider-controls button {
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      margin: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .slider-controls button:hover {
+      opacity: 0.9;
+    }
+
+    .slide-number {
+      margin-top: 5px;
+      color: var(--text-color);
+    }
+  </style>
+</head>
+<body>
+  <div class="faq-container">
+    <div class="theme-toggle">
+      <button id="toggle-theme">Toggle Theme</button>
+    </div>
+
+    <h2>Frequently Asked Questions</h2>
+    <div id="faq-list"></div>
+
+    <!-- Image Slider Section -->
+    <div class="slider-container">
+      <div class="slider" id="slider">
+        <div class="slide"><img src="https://images.unsplash.com/photo-1526779259212-939e64788e3c?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZnJlZSUyMGltYWdlc3xlbnwwfHwwfHx8MA%3D%3D" alt="Slide 1"></div>
+        <div class="slide"><img src="https://static.vecteezy.com/system/resources/thumbnails/036/324/708/small/ai-generated-picture-of-a-tiger-walking-in-the-forest-photo.jpg" alt="Slide 2"></div>
+        <div class="slide"><img src="https://images.unsplash.com/photo-1575936123452-b67c3203c357?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D" alt="Slide 3"></div>
+      </div>
+    </div>
+
+    <div class="slider-controls">
+      <button id="prev">⟨ Prev</button>
+      <button id="next">Next ⟩</button>
+      <div class="slide-number" id="slide-number">Slide 1 of 3</div>
+    </div>
+  </div>
+
+  <script>
+    // FAQ Data
+    const faqData = [
+      {
+        question: "How is the DOM selected and manipulated?",
+        answer: "The DOM is selected using `getElementById` and `querySelectorAll`, and manipulated by creating elements, appending children, setting `textContent`, and toggling `classList` and `style.transform` for dynamic updates."
+      },
+      {
+        question: "Are events and listeners properly handled?",
+        answer: "Yes, events and listeners are properly handled. The code uses **`addEventListener`** to attach `click` event listeners to interactive elements like the FAQ questions, theme toggle button, and all slider controls, ensuring the correct function runs in response to a user's action. This approach is efficient and keeps the event handling logic separate from the HTML structure."
+      },
+      {
+        question: "How is interactivity enhancing usability?",
+        answer: "Interactivity enhances usability by preventing information overload with collapsible FAQs, engaging users with a dynamic image slider, and providing a personalized experience with a theme switcher."
+      }
+    ];
+
+    const faqList = document.getElementById('faq-list');
+
+    faqData.forEach(item => {
+      const faqItem = document.createElement('div');
+      faqItem.className = 'faq-item';
+
+      const question = document.createElement('div');
+      question.className = 'faq-question';
+      question.textContent = item.question;
+
+      const answer = document.createElement('div');
+      answer.className = 'faq-answer';
+      answer.textContent = item.answer;
+
+      question.addEventListener('click', () => {
+        question.classList.toggle('active');
+        answer.classList.toggle('show');
+      });
+
+      faqItem.appendChild(question);
+      faqItem.appendChild(answer);
+      faqList.appendChild(faqItem);
+    });
+
+    // Theme Toggle
+    const toggleButton = document.getElementById('toggle-theme');
+    toggleButton.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+    });
+
+    // Image Slider
+    const slider = document.getElementById('slider');
+    const totalSlides = document.querySelectorAll('.slide').length;
+    const slideNumber = document.getElementById('slide-number');
+    let currentSlide = 0;
+
+    function updateSlider() {
+      slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+      slideNumber.textContent = `Slide ${currentSlide + 1} of ${totalSlides}`;
+    }
+
+    document.getElementById('prev').addEventListener('click', () => {
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      updateSlider();
+    });
+
+    document.getElementById('next').addEventListener('click', () => {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      updateSlider();
+    });
+
+    // Initialize
+    updateSlider();
+  </script>
+</body>
+</html>
