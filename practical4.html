@@ -97,7 +97,7 @@
       opacity: 1;
     }
 
-    /* Image Slider Styles */
+   
     .slider-container {
       margin-top: 40px;
       position: relative;
@@ -156,7 +156,7 @@
     <h2>Frequently Asked Questions</h2>
     <div id="faq-list"></div>
 
-    <!-- Image Slider Section -->
+  
     <div class="slider-container">
       <div class="slider" id="slider">
         <div class="slide"><img src="https://images.unsplash.com/photo-1526779259212-939e64788e3c?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZnJlZSUyMGltYWdlc3xlbnwwfHwwfHx8MA%3D%3D" alt="Slide 1"></div>
@@ -173,7 +173,7 @@
   </div>
 
   <script>
-    // FAQ Data
+   
     const faqData = [
       {
         question: "How is the DOM selected and manipulated?",
@@ -213,13 +213,13 @@
       faqList.appendChild(faqItem);
     });
 
-    // Theme Toggle
+
     const toggleButton = document.getElementById('toggle-theme');
     toggleButton.addEventListener('click', () => {
       document.body.classList.toggle('dark');
     });
 
-    // Image Slider
+ 
     const slider = document.getElementById('slider');
     const totalSlides = document.querySelectorAll('.slide').length;
     const slideNumber = document.getElementById('slide-number');
@@ -240,8 +240,9 @@
       updateSlider();
     });
 
-    // Initialize
+
     updateSlider();
   </script>
 </body>
 </html>
+
