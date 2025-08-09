@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Registration</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #1e1e2f;
+        color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        width: 400px;
+        margin: 50px auto;
+        background: #2a2a3d;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 20px rgba(0,0,0,0.5);
+    }
+    h2 {
+        text-align: center;
+        color: #00d4ff;
+    }
+    label {
+        font-weight: bold;
+        display: block;
+        margin-top: 10px;
+    }
+    input, select {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: none;
+        border-radius: 5px;
+        background-color: #3a3a4f;
+        color: #fff;
+    }
+    input:focus {
+        outline: none;
+        background-color: #4a4a66;
+    }
+    .btn {
+        width: 100%;
+        background-color: #00d4ff;
+        color: #000;
+        padding: 12px;
+        margin-top: 15px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    .btn:hover {
+        background-color: #00b8e6;
+    }
+    .error {
+        color: #ff4d4d;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>User Registration</h2>
+    <form id="registrationForm">
+        <label>Full Name</label>
+        <input type="text" id="name" placeholder="Enter your name" required>
+
+        <label>Email</label>
+        <input type="email" id="email" placeholder="Enter your email" required>
+
+        <label>Password</label>
+        <input type="password" id="password" placeholder="Enter password" required>
+
+        <label>Confirm Password</label>
+        <input type="password" id="confirmPassword" placeholder="Confirm password" required>
+
+        <label>Birthday</label>
+        <input type="date" id="birthday" required>
+
+        <label>Gender</label>
+        <select id="gender" required>
+            <option value="">Select gender</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+        </select>
+
+        <button type="submit" class="btn">Register</button>
+    </form>
+</div>
+
+<script>
+document.getElementById("registrationForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    let name = document.getElementById("name").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let password = document.getElementById("password").value;
+    let confirmPassword = document.getElementById("confirmPassword").value;
+
+    if (password.length < 6) {
+        alert("Password must be at least 6 characters.");
+        return;
+    }
+    if (password !== confirmPassword) {
+        alert("Passwords do not match.");
+        return;
+    }
+
+    alert("Registration Successful!");
+});
+</script>
+
+</body>
+</html>
